@@ -17,6 +17,12 @@ public class MyModule implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam param) throws Throwable {
         XposedBridge.log(TAG +": loaded app " + param.packageName);
+        try {
+            XposedHelpers.findClass("com.inka.appsealing.AppSealingApplication", param.classLoader);
+        } catch (XposedHelpers.ClassNotFoundError ex) {
+            XposedBridge.log(TAG +": " + param.packageName + " doesn't seem to have AppSealing, skipped.");
+            return;
+        }
 
         // Patch out telemetry
         XposedHelpers.findAndHookMethod("com.inka.appsealing.AwsSqsSender", param.classLoader, "send", String.class, String.class, String.class, String.class, new XC_MethodHook() {
