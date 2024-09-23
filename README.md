@@ -1,3 +1,5 @@
+# Notice
+I have recently received a DMCA from Inka AppSealing, which you can read [here](notice/dmca-2024-09-19.rtf). As a backup, I have moved the source code of this project to [Codeberg](https://codeberg.org/pufferffish/AppPealing).
 
 # **AppPealing**
 
